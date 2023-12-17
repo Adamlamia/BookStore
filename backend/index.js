@@ -99,6 +99,26 @@ app.put('/books/:id', async (request, response) => {
     }
 })
 
+// Route to Delete a book
+app.delete('/books/:id', async (request, response) => {
+    try {
+        const { id } = request.params;
+
+        const result = await Book.findByIdAndDelete(id);
+
+        if (!result) {
+            return response.status(404).json({ message: 'Book not found'});
+        }
+
+        return response.status(200).send({ message: 'Book deleted succesfully'});
+
+    } catch (error) {
+        console.log(eror.message);
+        response.status(500).send({ message: 'Book deleted succesfully'});
+    }
+});
+
+
 mongoose
     .connect(mongoDBURL)
     .then(() => {
