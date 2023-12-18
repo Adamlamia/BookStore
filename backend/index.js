@@ -10,15 +10,17 @@ const app = express();
 app.use(express.json());
 
 // Middleware to handle CORS
-// app.use(cors()); // Allow default origin
+app.use(cors()); // Allow default origin
 
-app.use(
+/*
+app.use( // Allow custom origin
     cors({
         origin: 'http://localhost:5555',
         methods: ['GET','POST', 'PUT', 'DELETE'],
         allowedHeaders: ['Content-Type'],
     })
 );
+*/
 
 app.get('/', (request, response) => {
     console.log(request)
